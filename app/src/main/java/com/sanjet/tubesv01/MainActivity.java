@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public final static String EXTRA_MESSAGE = "MESSAGE1";
     ArrayList<String> nama = new ArrayList<>();
     ArrayList<String> telp = new ArrayList<>();
 
@@ -42,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(status == 1){
+            System.out.println("MASUK");
             Intent intent2 = new Intent(this, Main2Activity.class);
+            DbCitizen.Akun akn = db.getAkun(uname);
+            int penduduk_id = akn.penduduk_id;
+            intent2.putExtra(EXTRA_MESSAGE,penduduk_id);
             startActivity(intent2);
         }else{
             Toast t = Toast.makeText(getApplicationContext(), "Username atau Password anda salah",      Toast.LENGTH_LONG);

@@ -39,7 +39,10 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".Main3Activity"></activity>
+        <activity android:name=".Main3Activity" />
+        <activity android:name=".Daftar_Tetangga" />
+        <activity android:name=".List_Ronda" />
+        <activity android:name=".List_Tetangga"></activity>
     </application>
 
 </manifest>

@@ -21,16 +21,42 @@ public class Main3Activity extends AppCompatActivity {
 
         EditText etUsername = (EditText) findViewById(R.id.etNewUsername);
         EditText etPassword = (EditText) findViewById(R.id.etNewPassword);
+        EditText etNama = (EditText) findViewById(R.id.etNewNama);
+        EditText etAlamat = (EditText) findViewById(R.id.etNewAlamat);
+        EditText etKontak = (EditText) findViewById(R.id.etNewKontak);
 
         String uname = etUsername.getText().toString();
         String pass = etPassword.getText().toString();
+        String nama = etNama.getText().toString();
+        String alamat = etAlamat.getText().toString();
+        String kontak = etKontak.getText().toString();
 
-        db.insertAkun(uname,pass);
+        db.insertPenduduk(nama,alamat,kontak);
+
+        int penduduk_id = db.getPendudukLastId();
+
+        if(penduduk_id % 7 == 1){
+            db.insertRonda(nama,"Senin");
+        }else if(penduduk_id % 7 == 2){
+            db.insertRonda(nama,"Selasa");
+        }else if(penduduk_id % 7 == 3){
+            db.insertRonda(nama,"Rabu");
+        }else if(penduduk_id % 7 == 4){
+            db.insertRonda(nama,"Kamis");
+        }else if(penduduk_id % 7 == 5){
+            db.insertRonda(nama,"Jumat");
+        }else if(penduduk_id % 7 == 6){
+            db.insertRonda(nama,"Sabtu");
+        }else {
+            db.insertRonda(nama,"Minggu");
+        }
+
+        db.insertAkun(uname,pass,penduduk_id);
 
         Intent intent1 = new Intent(this, MainActivity.class);
         startActivity(intent1);
 
-        Toast t = Toast.makeText(getApplicationContext(), "Akun berhasil dibuat",      Toast.LENGTH_LONG);
+        Toast t = Toast.makeText(getApplicationContext(), "Anda berhasil mendaftar",      Toast.LENGTH_LONG);
         t.show();
     }
 }
