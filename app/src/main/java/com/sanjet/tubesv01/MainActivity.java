@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         String uname = etUsername.getText().toString();
         String pass = etPassword.getText().toString();
+        pass = Main3Activity.md5(pass);
 
         DbCitizen db = new DbCitizen(getApplicationContext());
         db.open();

@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Main3Activity extends AppCompatActivity {
 
     @Override
@@ -27,6 +30,7 @@ public class Main3Activity extends AppCompatActivity {
 
         String uname = etUsername.getText().toString();
         String pass = etPassword.getText().toString();
+        pass = md5(pass);
         String nama = etNama.getText().toString();
         String alamat = etAlamat.getText().toString();
         String kontak = etKontak.getText().toString();
@@ -58,5 +62,30 @@ public class Main3Activity extends AppCompatActivity {
 
         Toast t = Toast.makeText(getApplicationContext(), "Anda berhasil mendaftar",      Toast.LENGTH_LONG);
         t.show();
+    }
+
+    public static final String md5(final String s) {
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest
+                    .getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
