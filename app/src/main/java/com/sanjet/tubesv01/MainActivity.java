@@ -60,4 +60,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent3 = new Intent(this, Main3Activity.class);
         startActivity(intent3);
     }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+    }
 }

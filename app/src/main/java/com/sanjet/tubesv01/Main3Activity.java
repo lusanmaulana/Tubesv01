@@ -88,4 +88,9 @@ public class Main3Activity extends AppCompatActivity {
         }
         return "";
     }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+    }
 }
